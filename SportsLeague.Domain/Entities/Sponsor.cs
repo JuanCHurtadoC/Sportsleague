@@ -12,7 +12,7 @@ namespace SportsLeague.Domain.Entities
 
         public string? WebsiteUrl { get; set; }
 
-        public SponsorCategory Category { get; set; }
+        public SponsorCategory SponsorCategory { get; set; }
 
         // Navigation Properties
         public ICollection<TournamentSponsor> TournamentSponsor { get; set; } = new List<TournamentSponsor>();

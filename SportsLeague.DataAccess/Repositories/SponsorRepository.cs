@@ -17,10 +17,10 @@ namespace SportsLeague.DataAccess.Repositories;
             return await _dbSet
                 .FirstOrDefaultAsync(s => s.SponsorName.ToLower() == name.ToLower());
         }
-        public async Task<IEnumerable<Sponsor>> GetByCategoryAsync(SponsorCategory category)
+        public async Task<IEnumerable<Sponsor>> GetByCategoryAsync(SponsorCategory SponsorCategory)
         {
             return await _dbSet
-                .Where(s => s.Category == category)
+                .Where(s => s.SponsorCategory == SponsorCategory)
                 .ToListAsync();
         }
 

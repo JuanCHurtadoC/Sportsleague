@@ -162,7 +162,7 @@ public class LeagueDbContext : DbContext
             entity.Property(s => s.WebsiteUrl)
                   .IsRequired(false)
                   .HasMaxLength(100);
-            entity.Property(s => s.Category)
+            entity.Property(s => s.SponsorCategory)
                   .IsRequired();
             entity.Property(s => s.CreatedAt)
                   .IsRequired();
@@ -176,6 +176,8 @@ public class LeagueDbContext : DbContext
         modelBuilder.Entity<TournamentSponsor>(entity =>
         {
             entity.HasKey(ts => ts.Id);
+            entity.Property(ts => ts.ContractAmount)
+                  .HasPrecision(18, 2);
             entity.Property(ts => ts.JoinedAt)
                   .IsRequired();
             entity.Property(ts => ts.CreatedAt)

@@ -3,6 +3,7 @@ using SportsLeague.Domain.Entities;
 using SportsLeague.Domain.Interfaces.Repositories;
 using SportsLeague.Domain.Interfaces.Services;
 using SportsLeague.Domain.Enums;
+using System.Net.Mail;
 
 namespace SportsLeague.Domain.Services;
 
@@ -12,6 +13,22 @@ public class SponsorService : ISponsorService
     private readonly ILogger<SponsorService> _logger;
     private readonly ITournamentSponsorRepository _tournamentSponsorRepository;
     private readonly ITournamentRepository _tournamentRepository;
+    private void ValidateEmail(string email)
+    {
+        try
+        {
+            var addr = new MailAddress(email);
+
+            if (addr.Address != email)
+            {
+                throw new InvalidOperationException("El formato del email no es válido");
+            }
+        }
+        catch
+        {
+            throw new InvalidOperationException("El formato del email no es válido");
+        }
+    }
 
 
     public SponsorService(ISponsorRepository sponsorRepository, ILogger<SponsorService> logger,
@@ -39,7 +56,8 @@ public class SponsorService : ISponsorService
     }
 
     public async Task<Sponsor> CreateAsync(Sponsor sponsor)
-    {
+    {   // Validar email
+        ValidateEmail(sponsor.ContactEmail);
         // Validación de negocio: nombre único
         var existingSponsor = await _sponsorRepository.GetByNameAsync(sponsor.SponsorName);
         if (existingSponsor != null)
@@ -53,7 +71,7 @@ public class SponsorService : ISponsorService
     }
 
     public async Task UpdateAsync(int id, Sponsor sponsor)
-    {
+    {   
         var existingSponsor = await _sponsorRepository.GetByIdAsync(id);
         if (existingSponsor == null)
         {
@@ -61,13 +79,15 @@ public class SponsorService : ISponsorService
             throw new KeyNotFoundException(
                 $"No se encontró el patrocinador con ID {id}");
         }
+        // Validar email
+        ValidateEmail(sponsor.ContactEmail);
         // Validar nombre único (si cambió)
         if (existingSponsor.SponsorName != sponsor.SponsorName)
         {
-            var sponsorWithSameName = await _sponsorRepository.GetByNameAsync(sponsor.SponsorName);
+          var sponsorWithSameName = await _sponsorRepository.GetByNameAsync(sponsor.SponsorName);
             if (sponsorWithSameName != null)
             {
-                throw new InvalidOperationException(
+               throw new InvalidOperationException(
                     $"Ya existe un patrocinador con el nombre '{sponsor.SponsorName}'");
             }
         }
@@ -76,7 +96,7 @@ public class SponsorService : ISponsorService
         existingSponsor.ContactEmail = sponsor.ContactEmail;
         existingSponsor.Phone = sponsor.Phone;
         existingSponsor.WebsiteUrl = sponsor.WebsiteUrl;
-        existingSponsor.Category = sponsor.Category;
+        existingSponsor.SponsorCategory = sponsor.SponsorCategory;
 
         _logger.LogInformation("Updating Sponsor with ID: {SponsorId}", id);
         await _sponsorRepository.UpdateAsync(existingSponsor);
