@@ -139,16 +139,16 @@ public class SponsorService : ISponsorService
         return tournamentSponsor;
     }
 
-    public async Task<IEnumerable<TournamentSponsor>> GetByTournamentAsync(int tournamentId)
+    public async Task<IEnumerable<TournamentSponsor>> GetByTournamentAsync(int TournamentId)
     {
-        _logger.LogInformation("Retrieving TournamentSponsors for Tournament ID: {TournamentId}", tournamentId);
-        return await _tournamentSponsorRepository.GetByTournamentAsync(tournamentId);
+        _logger.LogInformation("Retrieving TournamentSponsors for Tournament ID: {TournamentId}", TournamentId);
+        return await _tournamentSponsorRepository.GetByTournamentAsync(TournamentId);
     }
 
-    public async Task<IEnumerable<TournamentSponsor>> GetBySponsorAsync(int sponsorId)
+    public async Task<IEnumerable<TournamentSponsor>> GetBySponsorAsync(int SponsorId)
     {
-        _logger.LogInformation("Retrieving TournamentSponsors for Sponsor ID: {SponsorId}", sponsorId);
-        return await _tournamentSponsorRepository.GetBySponsorAsync(sponsorId);
+        _logger.LogInformation("Retrieving TournamentSponsors for Sponsor ID: {SponsorId}", SponsorId);
+        return await _tournamentSponsorRepository.GetBySponsorAsync(SponsorId);
     }
 
     public async Task RegisterSponsorAsync(int tournamentId, int sponsorId, decimal contractAmount)
