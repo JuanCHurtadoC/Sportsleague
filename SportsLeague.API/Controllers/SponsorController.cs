@@ -96,7 +96,38 @@ public class SponsorController : ControllerBase
         return Ok(_mapper.Map<SponsorResponseDTO>(Sponsor));
     }
 
+    [HttpPost("Register/{tournamentId}/{sponsorId}")]
+    public async Task<ActionResult> RegisterSponsor(int tournamentId, int sponsorId, decimal contractAmount)
+    {
+        try
+        {
+            await _SponsorService.RegisterSponsorAsync(tournamentId, sponsorId, contractAmount);
+            return NoContent();
+        }
+        catch (KeyNotFoundException ex) { return NotFound(new { message = ex.Message }); }
+        catch (InvalidOperationException ex) { return Conflict(new { message = ex.Message }); }
+    }
 
+    [HttpDelete("{SponsorId},{TournamentId}")]
+    public async Task<ActionResult> UnregisterSponsor(int SponsorId, int TournamentId)
+    {
+        try
+        {
+            await _SponsorService.DeleteAsync(SponsorId,TournamentId);
+            return NoContent();
+        }
+        catch (KeyNotFoundException ex) { return NotFound(new { message = ex.Message }); }
+        catch (InvalidOperationException ex) { return Conflict(new { message = ex.Message }); }
+    }
+
+    [HttpGet("{id}/Tournament")]
+    public async Task<ActionResult<IEnumerable<TournamentSponsorResponseDTO>>> GetBySponsor(int id)
+    {
+        var tournamentSponsors = await _SponsorService.GetBySponsorAsync(id);
+        if (tournamentSponsors == null || !tournamentSponsors.Any())
+            return NotFound(new { message = $"No se encontraron torneos para el patrocinador con ID {id}" });
+        return Ok(_mapper.Map<IEnumerable<TournamentSponsorResponseDTO>>(tournamentSponsors));
+    }
 
 
 

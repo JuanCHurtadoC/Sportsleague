@@ -11,7 +11,12 @@ namespace SportsLeague.Domain.Interfaces.Services
         Task<Sponsor> CreateAsync(Sponsor sponsor);
         Task UpdateAsync(int id, Sponsor sponsor);
         Task DeleteAsync(int id);
+        Task DeleteAsync(int Sid, int Tid);
         Task<IEnumerable<Sponsor>> GetByCategoryAsync(SponsorCategory category);
         Task<Sponsor> GetByNameAsync(string sponsorName);
+        Task<TournamentSponsor?> GetByTournamentAndSponsorAsync(int tournamentId, int sponsorId);
+        Task<IEnumerable<TournamentSponsor>> GetByTournamentAsync(int tournamentId);
+        Task<IEnumerable<TournamentSponsor>> GetBySponsorAsync(int sponsorId);
+        Task RegisterSponsorAsync(int tournamentId, int teamId, decimal contractAmount);
     }
 }

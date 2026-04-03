@@ -175,30 +175,30 @@ public class LeagueDbContext : DbContext
         // ── TournamentSponsor Configuration ──
         modelBuilder.Entity<TournamentSponsor>(entity =>
         {
-            entity.HasKey(tt => tt.Id);
-            entity.Property(tt => tt.JoinedAt)
+            entity.HasKey(ts => ts.Id);
+            entity.Property(ts => ts.JoinedAt)
                   .IsRequired();
-            entity.Property(tt => tt.CreatedAt)
+            entity.Property(ts => ts.CreatedAt)
                   .IsRequired();
-            entity.Property(tt => tt.UpdatedAt)
+            entity.Property(ts => ts.UpdatedAt)
                   .IsRequired(false);
 
 
 
             // Relación con Tournament
-            entity.HasOne(tt => tt.Tournament)
+            entity.HasOne(ts => ts.Tournament)
                   .WithMany(t => t.TournamentSponsor)
-                  .HasForeignKey(tt => tt.TournamentId)
+                  .HasForeignKey(ts => ts.TournamentId)
                   .OnDelete(DeleteBehavior.Cascade);
 
             // Relación con Sponsor
-            entity.HasOne(tt => tt.Sponsor)
-                  .WithMany(t => t.TournamentSponsor)
-                  .HasForeignKey(tt => tt.SponsorId)
+            entity.HasOne(ts => ts.Sponsor)
+                  .WithMany(s => s.TournamentSponsor)
+                  .HasForeignKey(ts => ts.SponsorId)
                   .OnDelete(DeleteBehavior.Cascade);
 
             // Índice único compuesto: un Sponsor solo una vez por torneo
-            entity.HasIndex(tt => new { tt.TournamentId, tt.SponsorId })
+            entity.HasIndex(ts => new { ts.TournamentId, ts.SponsorId })
                   .IsUnique();
         });
 
