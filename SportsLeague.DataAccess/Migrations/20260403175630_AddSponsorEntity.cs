@@ -21,7 +21,7 @@ namespace SportsLeague.DataAccess.Migrations
                     ContactEmail = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     WebsiteUrl = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Category = table.Column<int>(type: "int", nullable: false),
+                    SponsorCategory = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
