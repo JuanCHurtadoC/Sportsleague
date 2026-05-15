@@ -6,6 +6,7 @@ using SportsLeague.Domain.Interfaces.Repositories;
 using SportsLeague.Domain.Interfaces.Services;
 using SportsLeague.Domain.Services;
 using SportsLeague.DataAccess.Seeders;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,7 @@ builder.Services.AddScoped<ISponsorService, SponsorService>(); // NUEVO
 builder.Services.AddScoped<IMatchService, MatchService>();
 builder.Services.AddScoped<IMatchEventService, MatchEventService>();
 builder.Services.AddScoped<MatchValidationHelper>();
+builder.Services.AddScoped<IStandingsService, StandingsService>();
 
 
 
@@ -80,4 +82,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
 

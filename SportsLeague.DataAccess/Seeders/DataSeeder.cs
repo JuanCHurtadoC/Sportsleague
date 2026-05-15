@@ -49,6 +49,18 @@ public static class DataSeeder
                 ("William", "Tesillo", PlayerPosition.Defender, 3),
                 ("Edwin", "Cardona", PlayerPosition.Midfielder, 10),
                 ("Alfredo", "Morelos", PlayerPosition.Forward, 9),
+                ("Harlen", "Castillo", PlayerPosition.Goalkeeper, 12),
+                ("Diego", "Braghieri", PlayerPosition.Defender, 4),
+                ("Jorman", "Campuzano", PlayerPosition.Midfielder, 8),
+                ("Miguel", "Borja", PlayerPosition.Forward, 7),
+                ("Franco", "Arizala", PlayerPosition.Forward, 11),
+                ("Brayan", "Rey", PlayerPosition.Midfielder, 6),
+                ("Andrés", "Guzmán", PlayerPosition.Defender, 2),
+                ("Sebastián", "Viera", PlayerPosition.Goalkeeper, 22),
+                ("Jorge", "Bustos", PlayerPosition.Defender, 5),
+                ("Gustavo", "Hernández", PlayerPosition.Midfielder, 29),
+                ("Yerson", "Candelo", PlayerPosition.Midfielder, 18),
+                ("Jarlan", "Barrientos", PlayerPosition.Midfielder, 15),
             },
             // 2. Independiente Medellín
             new[] {
@@ -56,6 +68,17 @@ public static class DataSeeder
                 ("Andrés", "Cadavid", PlayerPosition.Defender, 4),
                 ("Adrián", "Arregui", PlayerPosition.Midfielder, 5),
                 ("Luciano", "Pons", PlayerPosition.Forward, 9),
+                ("Jorge", "Díaz", PlayerPosition.Defender, 3),
+                ("Brayan", "Pérez", PlayerPosition.Midfielder, 8),
+                ("Yulián", "Anchico", PlayerPosition.Defender, 2),
+                ("Gustavo", "Torres", PlayerPosition.Forward, 7),
+                ("Óscar", "Vanegas", PlayerPosition.Forward, 11),
+                ("Jhon", "Pajoy", PlayerPosition.Midfielder, 6),
+                ("Camilo", "Ayala", PlayerPosition.Defender, 5),
+                ("Diego", "Martínez", PlayerPosition.Goalkeeper, 12),
+                ("Ray", "Vanegas", PlayerPosition.Midfielder, 10),
+                ("Jown", "Cardona", PlayerPosition.Forward, 19),
+                ("Andrés", "Guzmán", PlayerPosition.Defender, 25)
             },
             // 3. América de Cali
             new[] {
